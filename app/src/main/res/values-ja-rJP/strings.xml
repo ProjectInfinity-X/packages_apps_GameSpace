@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2021 Chaldeaprjkt
+                   2022 crDroid Android Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="settings_title">ゲームスペース</string>
+    <string name="settings_summary">ゲームの設定を管理する</string>
+    <string name="app_selector_label">ゲームを選んで下さい</string>
+    <string name="auto_brightness_disabled_title">自動明るさ調節の無効化</string>
+    <string name="auto_brightness_disabled_summary">ゲーム中は明るさを維持させる</string>
+    <string name="heads_up_disabled_title">Heads Up の無効化</string>
+    <string name="heads_up_disabled_summary">ゲーム中はポップアップ通知を許可しない</string>
+    <string name="in_game_preferences_title">ゲーム内オプション</string>
+    <string name="game_list_title">ライブラリ</string>
+    <string name="game_remove_message">%1$s をライブラリから削除してもよろしいですか?</string>
+    <string name="app_search_title">検索</string>
+    <string name="three_screenshot_disabled_summary">ゲーム中は3本指のスワイプでのスクリーンショットジェスチャーを一時的に無効化する</string>
+    <string name="three_screenshot_disabled_title">スワイプでのスクリーンショット無効化</string>
+    <string name="state_enabled">有効</string>
+    <string name="state_disabled">無効</string>
+    <!-- Game Mode -->
+    <string name="game_mode_title">モード</string>
+    <string name="game_mode_unsupported">非対応</string>
+    <string name="game_mode_standard">標準</string>
+    <string name="game_mode_performance">パフォーマンス</string>
+    <string name="game_mode_battery">バッテリー</string>
+    <string name="heads_up_title">Heads Up</string>
+    <string name="fps_Info_title">FPS 情報</string>
+    <string name="stay_awake_title">常に画面点灯</string>
+    <string name="stay_awake_summary">ゲーム中は画面をスリープ状態にしない</string>
+    <string name="ringer_mode_title">着信モード</string>
+    <string name="ringer_mode_silent">サイレント</string>
+    <string name="ringer_mode_vibrate">振動</string>
+    <string name="ringer_mode_normal">標準</string>
+    <string name="suppress_fullscreen_intent_title">全画面イベントをブロック</string>
+    <string name="suppress_fullscreen_intent_summary">ゲーム中は着信通話のような全画面イベントが表示されないようにする</string>
+    <string name="per_app_title">ゲームを設定</string>
+    <string name="per_app_mode_title">優先モード</string>
+    <string name="per_app_angle_title">ANGLE を使用 (実験的)</string>
+    <string name="per_app_angle_summary">ネイティブ GLES ドライバーの代わりに ANGLE レンダラーを使用する。\n警告! ゲームグラフィックが破損する可能性があります。注意して使用して下さい!</string>
+    <string name="cant_find_angle_pkg">お使いのシステムでは ANGLE は利用できません</string>
+    <string name="per_app_unregister">%1$s をライブラリから削除</string>
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">値: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">既定</string>
+    <string name="custom_seekbar_default_value_to_set">既定値: <xliff:g id="v">%s</xliff:g>\n長押しで設定</string>
+    <string name="custom_seekbar_default_value_is_set">既定値が設定されています</string>
+    <string name="gamespace_menu_opacity_title">オーバーレイメニューの不透明度</string>
+    <string name="adb_disabled_summary">ゲーム中は USB ADB デバッグを一時的に無効化する</string>
+    <string name="adb_disabled_title">USB デバッグの無効化</string>
+</resources>
