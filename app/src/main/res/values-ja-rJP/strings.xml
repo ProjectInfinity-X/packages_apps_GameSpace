@@ -41,6 +41,7 @@
     <string name="fps_Info_title">FPS 情報</string>
     <string name="stay_awake_title">常に画面点灯</string>
     <string name="stay_awake_summary">ゲーム中は画面をスリープ状態にしない</string>
+    <string name="lock_gesture_title">ロックジェスチャー</string>
     <string name="ringer_mode_title">着信モード</string>
     <string name="ringer_mode_silent">サイレント</string>
     <string name="ringer_mode_vibrate">振動</string>
