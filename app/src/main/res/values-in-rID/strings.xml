@@ -41,6 +41,7 @@
     <string name="fps_Info_title">Info FPS</string>
     <string name="stay_awake_title">Tetap terjaga</string>
     <string name="stay_awake_summary">Jaga agar layar tetap terjaga saat dalam game</string>
+    <string name="lock_gesture_title">Kunci Gestur</string>
     <string name="ringer_mode_title">Mode dering</string>
     <string name="ringer_mode_silent">Senyap</string>
     <string name="ringer_mode_vibrate">Getar</string>

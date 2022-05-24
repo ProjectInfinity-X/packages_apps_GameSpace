@@ -41,6 +41,7 @@
     <string name="fps_Info_title">FPS Info</string>
     <string name="stay_awake_title">Zostať aktívny</string>
     <string name="stay_awake_summary">Počas hry udržujte obrazovku v bdelom stave</string>
+    <string name="lock_gesture_title">Gesto uzamknutia</string>
     <string name="ringer_mode_title">Režim zvonenia</string>
     <string name="ringer_mode_silent">Tichý</string>
     <string name="ringer_mode_vibrate">Vibrovať</string>

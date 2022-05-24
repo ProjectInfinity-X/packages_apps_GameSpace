@@ -41,6 +41,7 @@
     <string name="fps_Info_title">معلومات FPS</string>
     <string name="stay_awake_title">البقاء مستيقظاً</string>
     <string name="stay_awake_summary">إبقاء الشاشة مستيقظة أثناء اللعب</string>
+    <string name="lock_gesture_title">قفل الإيماءة</string>
     <string name="ringer_mode_title">وضع الرنين</string>
     <string name="ringer_mode_silent">صامت</string>
     <string name="ringer_mode_vibrate">اهتزاز</string>

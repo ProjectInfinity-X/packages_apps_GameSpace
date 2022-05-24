@@ -41,6 +41,7 @@
     <string name="fps_Info_title">Отображать FPS</string>
     <string name="stay_awake_title">Не выключать экран</string>
     <string name="stay_awake_summary">Не отключать экран, пока вы в игре</string>
+    <string name="lock_gesture_title">Жест блокировки</string>
     <string name="ringer_mode_title">Режим звонка</string>
     <string name="ringer_mode_silent">Без звука</string>
     <string name="ringer_mode_vibrate">Вибрация</string>
