@@ -20,14 +20,11 @@
     <string name="settings_summary">Kelola pengaturan game Anda</string>
     <string name="app_selector_label">Pilih game Anda</string>
     <string name="auto_brightness_disabled_title">Nonaktifkan kecerahan otomatis</string>
-    <string name="auto_brightness_disabled_summary">Pertahankan kecerahan tetap saat dalam game</string>
     <string name="heads_up_disabled_title">Nonaktifkan notifikasi mengambang</string>
-    <string name="heads_up_disabled_summary">Larang notifikasi pop-up saat dalam game</string>
     <string name="in_game_preferences_title">Opsi dalam game</string>
     <string name="game_list_title">Pustaka</string>
     <string name="game_remove_message">Anda yakin ingin menghapus %1$s dari pustaka Anda?</string>
     <string name="app_search_title">Cari</string>
-    <string name="three_screenshot_disabled_summary">Nonaktifkan sementara gestur tangkapan layar gesek tiga jari saat dalam game</string>
     <string name="three_screenshot_disabled_title">Nonaktifkan gesek ke tangkapan layar</string>
     <string name="state_enabled">diaktifkan</string>
     <string name="state_disabled">dinonaktifkan</string>
@@ -40,8 +37,7 @@
     <string name="heads_up_title">Notifikasi mengambang</string>
     <string name="fps_Info_title">Info FPS</string>
     <string name="stay_awake_title">Tetap terjaga</string>
-    <string name="stay_awake_summary">Jaga agar layar tetap terjaga saat dalam game</string>
-    <string name="lock_gesture_title">Kunci Gestur</string>
+    <string name="lock_gesture_title">Kunci gestur</string>
     <string name="ringer_mode_title">Mode dering</string>
     <string name="ringer_mode_silent">Senyap</string>
     <string name="ringer_mode_vibrate">Getar</string>
@@ -60,6 +56,5 @@
     <string name="custom_seekbar_default_value_to_set">Nilai bawaan: <xliff:g id="v">%s</xliff:g>\nTekan lama untuk menerapkan</string>
     <string name="custom_seekbar_default_value_is_set">Nilai bawaan telah diterapkan</string>
     <string name="gamespace_menu_opacity_title">Tingkat opasitas hamparan menu</string>
-    <string name="adb_disabled_summary">Nonaktifkan sementara USB ADB debugging saat dalam game</string>
     <string name="adb_disabled_title">Nonaktifkan USB debugging</string>
 </resources>
