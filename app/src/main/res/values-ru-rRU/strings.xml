@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="settings_title">Игровое пространство</string>
+    <string name="settings_title">Игровое Пространство</string>
     <string name="settings_summary">Настройка игровых возможностей</string>
     <string name="app_selector_label">Выберите свою игру</string>
     <string name="auto_brightness_disabled_title">Отключить автояркость</string>
@@ -57,4 +57,6 @@
     <string name="custom_seekbar_default_value_is_set">Значение по умолчанию установлено</string>
     <string name="gamespace_menu_opacity_title">Уровень прозрачности меню наложения</string>
     <string name="adb_disabled_title">Отключить отладку USB</string>
+    <string name="battery_format">Батарея: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
+    <string name="memory_format">Доступная память: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
 </resources>
