@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="settings_title">Modo gamer</string>
+    <string name="settings_title">Modo Gamer</string>
     <string name="settings_summary">Gerencie sua configuração de jogos</string>
     <string name="app_selector_label">Escolha seu jogo</string>
     <string name="auto_brightness_disabled_title">Desativar brilho automático</string>
@@ -57,4 +57,6 @@
     <string name="custom_seekbar_default_value_is_set">Valor padrão definido</string>
     <string name="gamespace_menu_opacity_title">Nível de opacidade do menu de opções</string>
     <string name="adb_disabled_title">Desativar a depuração USB</string>
+    <string name="battery_format">Bateria: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
+    <string name="memory_format">Memória disponível: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
 </resources>
