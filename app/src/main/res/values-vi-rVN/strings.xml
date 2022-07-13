@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="settings_title">Không gian game</string>
+    <string name="settings_title">Game Space</string>
     <string name="settings_summary">Quản lý thiết lập trò chơi của bạn</string>
     <string name="app_selector_label">Chọn game</string>
     <string name="auto_brightness_disabled_title">Tắt độ sáng tự động</string>
