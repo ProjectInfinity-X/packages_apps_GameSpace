@@ -71,8 +71,8 @@
     <string name="custom_seekbar_default_value_is_set">Default value is set</string>
 
     <!-- Game overlay -->
-    <string name="battery_format">Battery: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
-    <string name="memory_format">Memory available: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
+    <string name="battery_format" translatable="false">Battery: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
+    <string name="memory_format" translatable="false">Memory available: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
 
     <!-- Tiles -->
     <string name="game_mode_title">Mode</string>
