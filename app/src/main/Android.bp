@@ -28,8 +28,8 @@ android_app {
         "hilt_android",
     ],
     kotlincflags: [
-        "-Xuse-experimental=kotlin.Experimental",
-        "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
+        "-opt-in=kotlin.Experimental",
+        "-opt-in=kotlin.ExperimentalStdlibApi",
     ],
     plugins: [
         "dagger2-compiler",
