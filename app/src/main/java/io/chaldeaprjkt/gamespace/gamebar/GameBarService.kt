@@ -139,7 +139,9 @@ class GameBarService : Hilt_GameBarService() {
         rootBarView = LayoutInflater.from(this)
             .inflate(R.layout.window_util, frame, false)!!
         barView = rootBarView.findViewById(R.id.container_bar)!!
+        barView.alpha = appSettings.menuOpacity / 100f
         menuSwitcher = rootBarView.findViewById(R.id.action_menu_switcher)!!
+        menuSwitcher.alpha = appSettings.menuOpacity / 100f
         danmakuService.init()
     }
 
@@ -352,6 +354,7 @@ class GameBarService : Hilt_GameBarService() {
 
     private fun panelButton() {
         val actionPanel = rootBarView.findViewById<ImageButton>(R.id.action_panel)!!
+        actionPanel.alpha = appSettings.menuOpacity / 100f
         actionPanel.setOnClickListener {
             showPanel = !showPanel
         }
@@ -363,6 +366,7 @@ class GameBarService : Hilt_GameBarService() {
 
     private fun screenshotButton() {
         val actionScreenshot = rootBarView.findViewById<ImageButton>(R.id.action_screenshot)!!
+        actionScreenshot.alpha = appSettings.menuOpacity / 100f
         actionScreenshot.setOnClickListener {
             takeShot()
         }
@@ -370,6 +374,7 @@ class GameBarService : Hilt_GameBarService() {
 
     private fun recorderButton() {
         val actionRecorder = rootBarView.findViewById<ImageButton>(R.id.action_record)!!
+        actionRecorder.alpha = appSettings.menuOpacity / 100f
         val recorder = screenUtils.recorder ?: let { actionRecorder?.isVisible = false; return }
         recorder.addRecordingCallback(object : IRecordingCallback.Stub() {
             override fun onRecordingStart() {
