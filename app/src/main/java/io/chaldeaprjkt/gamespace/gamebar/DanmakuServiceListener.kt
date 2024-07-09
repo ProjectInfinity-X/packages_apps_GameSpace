@@ -32,11 +32,13 @@ class DanmakuServiceListener : NotificationListenerService() {
     var danmakuServiceInterface: DanmakuServiceInterface? = null
 
     override fun onNotificationPosted(sbn: StatusBarNotification) {
-    if (!(danmakuServiceInterface?.danmakuNotificationMode ?: false) || !sbn.isClearable || sbn.isOngoing) return
+        if (!(danmakuServiceInterface?.danmakuNotificationMode ?: false) || !sbn.isClearable || sbn.isOngoing) return
 
         val extras = sbn.notification.extras
-        val title = extras.getString(Notification.EXTRA_TITLE) ?: extras.getString(Notification.EXTRA_TITLE_BIG)
-        val text = extras.getString(Notification.EXTRA_TEXT)
+
+        val title = extras.getCharSequence(Notification.EXTRA_TITLE)?.toString()
+            ?: extras.getCharSequence(Notification.EXTRA_TITLE_BIG)?.toString()
+        val text = extras.getCharSequence(Notification.EXTRA_TEXT)?.toString()
 
         var danmakuText = ""
         if (title?.isNotBlank() == true) danmakuText += "[$title] "
