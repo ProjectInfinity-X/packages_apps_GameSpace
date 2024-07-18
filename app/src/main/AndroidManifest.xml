@@ -38,6 +38,7 @@
 
     <application
         android:name=".GameSpace"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/settings_title"
         android:supportsRtl="true"
         android:theme="@style/GameSpaceTheme"
