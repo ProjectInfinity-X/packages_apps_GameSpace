@@ -63,7 +63,6 @@
     <string name="custom_seekbar_default_value_to_set">既定値: <xliff:g id="v">%s</xliff:g>\n長押しで設定</string>
     <string name="custom_seekbar_default_value_is_set">既定値が設定されています</string>
     <!-- Game overlay -->
-    <string name="battery_format">バッテリー: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
     <string name="memory_format">利用可能メモリ: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
     <!-- Tiles -->
     <string name="game_mode_title">モード</string>

@@ -63,7 +63,6 @@
     <string name="custom_seekbar_default_value_to_set">Значение по умолчанию: <xliff:g id="v">%s</xliff:g>\nУдерживайте для установки</string>
     <string name="custom_seekbar_default_value_is_set">Значение по умолчанию установлено</string>
     <!-- Game overlay -->
-    <string name="battery_format">Батарея: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
     <string name="memory_format">Доступная память: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
     <!-- Tiles -->
     <string name="game_mode_title">Режим</string>

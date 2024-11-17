@@ -63,7 +63,6 @@
     <string name="custom_seekbar_default_value_to_set">Giá trị mặc định: <xliff:g id="v">%s</xliff:g>\nNhấn giữ lâu để thiết lập</string>
     <string name="custom_seekbar_default_value_is_set">Đã đặt giá trị mặc định</string>
     <!-- Game overlay -->
-    <string name="battery_format">Pin: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
     <string name="memory_format">Bộ nhớ có sẵn: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
     <!-- Tiles -->
     <string name="game_mode_title">Chế độ</string>

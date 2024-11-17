@@ -77,7 +77,7 @@
 
     <string name="date_format" translatable="false">EEEE, MMM d</string>
 
-    <string name="battery_format"><xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
+    <string name="battery_format" translatable="false"><xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
     <string name="ram_usage">RAM usage: </string>
 
     <!-- Notification Mode -->

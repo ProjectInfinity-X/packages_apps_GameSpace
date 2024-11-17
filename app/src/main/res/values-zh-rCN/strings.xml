@@ -63,7 +63,6 @@
     <string name="custom_seekbar_default_value_to_set">默认值: <xliff:g id="v">%s</xliff:g>\n长按设置</string>
     <string name="custom_seekbar_default_value_is_set">恢复默认值</string>
     <!-- Game overlay -->
-    <string name="battery_format">电量: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
     <string name="memory_format">内存空闲: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
     <!-- Tiles -->
     <string name="game_mode_title">游戏模式</string>

@@ -63,7 +63,6 @@
     <string name="custom_seekbar_default_value_to_set">기본값: <xliff:g id="v">%s</xliff:g>\n길게 눌러서 설정</string>
     <string name="custom_seekbar_default_value_is_set">기본값으로 설정됨</string>
     <!-- Game overlay -->
-    <string name="battery_format">배터리: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
     <string name="memory_format">메모리 사용가능량: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
     <!-- Tiles -->
     <string name="game_mode_title">모드</string>

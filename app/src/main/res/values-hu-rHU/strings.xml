@@ -63,7 +63,6 @@
     <string name="custom_seekbar_default_value_to_set">Alapértelmezett érték: <xliff:g id="v">%s</xliff:g>\nHosszú koppintás a beállításhoz</string>
     <string name="custom_seekbar_default_value_is_set">Az alapértelmezett érték beállítva</string>
     <!-- Game overlay -->
-    <string name="battery_format">Akkumulátor: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
     <string name="memory_format">Elérhető memória: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
     <!-- Tiles -->
     <string name="game_mode_title">Mód</string>

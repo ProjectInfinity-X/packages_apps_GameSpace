@@ -63,7 +63,6 @@
     <string name="custom_seekbar_default_value_to_set">Valor padrão: <xliff:g id="v">%s</xliff:g>\nO Prima para definir</string>
     <string name="custom_seekbar_default_value_is_set">O valor padrão está definido</string>
     <!-- Game overlay -->
-    <string name="battery_format">Bateria: <xliff:g id="percentage" example="100">%1$d%%</xliff:g></string>
     <string name="memory_format">Memória disponível: <xliff:g id="availmemory" example="1000">%1$d</xliff:g>\/<xliff:g id="totalmemory" example="5000">%2$d</xliff:g> MB</string>
     <!-- Tiles -->
     <string name="game_mode_title">Modo</string>
