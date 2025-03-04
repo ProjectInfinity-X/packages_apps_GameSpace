@@ -69,6 +69,10 @@ class AppSettings @Inject constructor(private val context: Context) {
     var menuOpacity: Int
         get() = db.getInt(KEY_MENU_OPACITY, 100)
         set(value) = db.edit().putInt(KEY_MENU_OPACITY, value).apply()
+    
+    var noAdbEnabled
+        get() = db.getBoolean(KEY_ADB_DISABLE, false)
+        set(it) = db.edit().putBoolean(KEY_ADB_DISABLE, it).apply()
 
     var lockGesture
         get() = db.getBoolean(KEY_LOCK_GESTURE, false)
@@ -81,6 +85,7 @@ class AppSettings @Inject constructor(private val context: Context) {
         const val KEY_DANMAKU_NOTIFICATION_MODE = "gamespace_danmaku_notification_mode"
         const val KEY_CALLS_MODE = "gamespace_calls_mode"
         const val KEY_RINGER_MODE = "gamespace_ringer_mode"
+        const val KEY_ADB_DISABLE = "gamespace_adb_disabled"
         const val KEY_LOCK_GESTURE = "gamespace_lock_gesture"
         const val KEY_MENU_OPACITY = "gamespace_menu_opacity"
     }
