@@ -29,7 +29,7 @@ class PerAppSettingsActivity : Hilt_PerAppSettingsActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(com.android.settingslib.R.id.content_frame, PerAppSettingsFragment())
+                .replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, PerAppSettingsFragment())
                 .commit()
         }
     }
