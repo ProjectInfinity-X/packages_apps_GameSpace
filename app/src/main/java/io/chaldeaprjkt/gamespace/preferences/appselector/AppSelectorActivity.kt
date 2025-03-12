@@ -26,7 +26,7 @@ class AppSelectorActivity : Hilt_AppSelectorActivity() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(com.android.settingslib.R.id.content_frame, AppSelectorFragment())
+                .replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, AppSelectorFragment())
                 .commit()
         }
     }
