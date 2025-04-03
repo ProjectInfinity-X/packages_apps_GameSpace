@@ -96,4 +96,8 @@
     <!-- Danmaku Notification Mode -->
     <string name="danmaku_notification_mode_title">Danmaku Notification mode</string>
     <string name="danmaku_notification_mode_summary">Show notification as danmaku aka bullet comments while game is active</string>
+
+    <!-- Bypass charging -->
+    <string name="bypass_charge_enabled_summary">Bypass charging</string>
+    <string name="bypass_charge_enabled_title">Enable bypass charging while playing games</string>
 </resources>
