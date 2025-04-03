@@ -99,4 +99,7 @@
     <string name="danmaku_notification_mode_summary">Show notification as danmaku aka bullet comments while game is active</string>
     
     <string name="gamespace_running">Game Space is running</string>
+    <!-- Bypass charging -->
+    <string name="bypass_charge_enabled_summary">Bypass charging</string>
+    <string name="bypass_charge_enabled_title">Enable bypass charging while playing games</string>
 </resources>
