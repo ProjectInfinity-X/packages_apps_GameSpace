@@ -87,6 +87,12 @@
             android:summary="@string/suppress_fullscreen_intent_summary"
             android:title="@string/suppress_fullscreen_intent_title" />
 
+        <com.crdroid.settings.preferences.SystemSettingSwitchPreference
+            android:key="bypass_charge_enabled"
+            android:summary="@string/bypass_charge_enabled_title"
+            android:title="@string/bypass_charge_enabled_summary"
+            android:defaultValue="false" />
+
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="gamespace_auto_brightness_disabled"
