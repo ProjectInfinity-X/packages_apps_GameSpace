@@ -16,8 +16,12 @@
  */
 package io.chaldeaprjkt.gamespace.gamebar
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.graphics.Point
@@ -32,6 +36,7 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import androidx.core.app.NotificationCompat
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
@@ -70,15 +75,15 @@ class GameBarService : Hilt_GameBarService() {
 
     private val barLayoutParam =
         WindowManager.LayoutParams(
-            WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG,
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                    or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                    or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+            WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
             PixelFormat.TRANSLUCENT
         ).apply {
             width = WindowManager.LayoutParams.WRAP_CONTENT
             height = WindowManager.LayoutParams.WRAP_CONTENT
-            layoutInDisplayCutoutMode =
+            layoutInDisplayCutoutMode = 
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS
             preferMinimalPostProcessing = true
             gravity = Gravity.TOP
@@ -87,17 +92,16 @@ class GameBarService : Hilt_GameBarService() {
     private val panelLayoutParam =
         WindowManager.LayoutParams(
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                    or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                    or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+            WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
             PixelFormat.TRANSLUCENT
         ).apply {
             width = WindowManager.LayoutParams.MATCH_PARENT
             height = WindowManager.LayoutParams.MATCH_PARENT
-            layoutInDisplayCutoutMode =
+            layoutInDisplayCutoutMode = 
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS
             gravity = Gravity.CENTER_VERTICAL
-
         }
 
     private lateinit var rootBarView: View
@@ -124,15 +128,22 @@ class GameBarService : Hilt_GameBarService() {
         set(value) {
             field = value
             if (value) {
-                if (!::rootPanelView.isInitialized) 
+                if (!::rootPanelView.isInitialized) {
                     setupPanelView()
-                if (!rootPanelView.isAttachedToWindow)
+                }
+                updatePanelTranslation()
+                if (!rootPanelView.isAttachedToWindow) {
                     wm.addView(rootPanelView, panelLayoutParam)
+                } else {
+                    wm.updateViewLayout(rootPanelView, panelLayoutParam)
+                }
             } else if (!value) {
                 if (::rootPanelView.isInitialized && rootPanelView.isAttachedToWindow)
                     wm.removeView(rootPanelView)
             }
         }
+
+    private var barAdded = false
 
     // Whether to ignore the initActions (floating action) or not
     private var shouldClose = false
@@ -149,10 +160,36 @@ class GameBarService : Hilt_GameBarService() {
         danmakuService.init()
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (::rootBarView.isInitialized && rootBarView.isAttachedToWindow) {
-            return START_STICKY
+    private fun startForegroundService() {
+        val channelId = "gamespace_service_channel"
+        val channelName = "Game Space Service"
+
+        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        val channel = NotificationChannel(
+            channelId,
+            channelName,
+            NotificationManager.IMPORTANCE_HIGH
+        ).apply {
+            setSound(null, null)
+            enableVibration(false)
+            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
         }
+        manager.createNotificationChannel(channel)
+
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setContentTitle(getString(R.string.gamespace_running))
+            .setSmallIcon(R.drawable.ic_gear)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_SERVICE)
+            .setOngoing(true)
+            .setSilent(true)
+            .build()
+
+        startForeground(1001, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
             ACTION_STOP -> onGameLeave()
             ACTION_START -> onGameStart()
@@ -197,36 +234,50 @@ class GameBarService : Hilt_GameBarService() {
         rootBarView.alpha = 0f
         updateRootBarView()
         handler.postDelayed(firstPaint, 500)
+        startForegroundService()
     }
 
     fun onGameLeave() {
         shouldClose = true
-        try {
-            if (::rootPanelView.isInitialized && rootPanelView.isAttachedToWindow) {
+
+        handler.removeCallbacksAndMessages(null)
+
+        runCatching {
+            if (::rootPanelView.isInitialized 
+                    && rootPanelView.isAttachedToWindow) {
                 wm.removeViewImmediate(rootPanelView)
             }
-            if (::rootBarView.isInitialized && rootBarView.isAttachedToWindow) {
+        }.onFailure { it.printStackTrace() }
+
+        runCatching {
+            if (::rootBarView.isInitialized 
+                    && rootBarView.isAttachedToWindow) {
                 wm.removeViewImmediate(rootBarView)
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        }.onFailure { it.printStackTrace() }
+
+        barAdded = false
+
+        stopForeground(true)
+        stopSelf()
     }
 
     private fun updateRootBarView() {
         if (!::rootBarView.isInitialized) return
 
-        // Try to remove and add the view manually to avoid animation jumps.
-        // Otherwise, use updateViewLayout
-        try {
-            if (rootBarView.isAttachedToWindow) {
+        runCatching {
+            if (barAdded) {
                 wm.removeViewImmediate(rootBarView)
             }
             wm.addView(rootBarView, barLayoutParam)
-        } catch (_: RuntimeException) {
-            if (rootBarView.isAttachedToWindow) {
-                wm.updateViewLayout(rootBarView, barLayoutParam)
-            }
+            barAdded = true
+        }.onFailure {
+            it.printStackTrace()
+            runCatching {
+                if (barAdded) {
+                    wm.updateViewLayout(rootBarView, barLayoutParam)
+                }
+            }.onFailure { err -> err.printStackTrace() }
         }
     }
 
@@ -317,7 +368,14 @@ class GameBarService : Hilt_GameBarService() {
             rootPanelView.gravity = Gravity.END
             rootPanelView.setPaddingRelative(16, 16, barWidth, 16)
         }
-        panelView.relativeY = barView.locationOnScreen.last() - barView.height
+    }
+    
+    fun updatePanelTranslation() {
+        panelView.post {
+            val layoutParams = panelView.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.topMargin = appSettings.y
+            panelView.layoutParams = layoutParams
+        }
     }
 
     private fun takeShot() {
@@ -330,10 +388,10 @@ class GameBarService : Hilt_GameBarService() {
 
         updateLayout { it.alpha = 0f }
         handler.postDelayed({
-            try {
+            runCatching {
                 screenUtils.takeScreenshot { afterShot() }
-            } catch (e: Exception) {
-                e.printStackTrace()
+            }.onFailure {
+                it.printStackTrace()
                 afterShot()
             }
         }, 250)

@@ -33,9 +33,6 @@ class PanelView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs) {
 
-    private var defaultY: Float? = null
-    var relativeY = 0
-
     init {
         LayoutInflater.from(context).inflate(R.layout.panel_view, this, true)
         isClickable = true
@@ -44,7 +41,6 @@ class PanelView @JvmOverloads constructor(
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        applyRelativeLocation()
         batteryTemperature()
     }
 
@@ -55,17 +51,5 @@ class PanelView @JvmOverloads constructor(
         val degree = "\u2103"
         val batteryTemp:TextView = requireViewById(R.id.batteryTemp)
         batteryTemp.text = "$temp$degree"
-    }
-
-    private fun applyRelativeLocation() {
-        doOnLayout {
-            if (defaultY == null)
-                defaultY = y
-
-            val safeArea = rootWindowInsets.getInsets(WindowInsets.Type.systemBars())
-            val minY = safeArea.top + 16.dp
-            val maxY = safeArea.top + (parent as View).height - safeArea.bottom - height - 16.dp
-            y = relativeY.coerceIn(minY, maxY).toFloat()
-        }
     }
 }

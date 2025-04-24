@@ -133,4 +133,6 @@
         <item>performance</item>
         <item>powersave</item>
     </string-array>
+    
+    <string name="gamespace_running">Game Space is running</string>
 </resources>

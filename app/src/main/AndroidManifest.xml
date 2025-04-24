@@ -35,6 +35,8 @@
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
     <!-- Required for Telephony callbacks -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 
     <application
         android:name=".GameSpace"
@@ -65,6 +67,7 @@
 
         <service
             android:name=".gamebar.GameBarService"
+            android:foregroundServiceType="specialUse"
             android:exported="false" />
 
         <service
