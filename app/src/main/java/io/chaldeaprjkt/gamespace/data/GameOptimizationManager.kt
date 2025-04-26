@@ -23,7 +23,7 @@ class GameOptimizationManager @Inject constructor(
         Context.MODE_PRIVATE
     )
 
-    private val activityManager: ActivityManager = context.getSystemService(ActivityManager::class.java)
+    private val activityManager: ActivityManager = context.getSystemService(ActivityManager::class.java)!!
 
     var isLaunchBoostEnabled: Boolean
         get() = prefs.getBoolean(KEY_LAUNCH_BOOST, true)

@@ -34,8 +34,10 @@ import io.chaldeaprjkt.gamespace.preferences.appselector.AppSelectorActivity
 import io.chaldeaprjkt.gamespace.preferences.QuickStartAppPreference
 import io.chaldeaprjkt.gamespace.preferences.QuickStartAppPreferenceDialogFragment
 
+import javax.inject.Inject
+
 @AndroidEntryPoint(PreferenceFragmentCompat::class)
-class SettingsFragment : Hilt_SettingsFragment() {
+class SettingsFragment : Hilt_SettingsFragment(), Preference.OnPreferenceChangeListener {
 
     @Inject
     lateinit var gameOptimization: GameOptimizationManager
