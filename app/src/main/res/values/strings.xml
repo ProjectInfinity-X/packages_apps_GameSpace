@@ -16,6 +16,9 @@
   -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="memory_boost">Boost memory</string>
+    <string name="memory_boost_summary">Optimize memory</string>
+    <string name="boost_memory">Memory boosted</string>
     <string name="quick_start_apps_title">Quick Start Apps</string>
     <string name="quick_start_apps_summary">Select apps to launch quickly</string>
     <string name="settings_title">Game Space</string>

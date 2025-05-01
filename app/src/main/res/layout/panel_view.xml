@@ -97,7 +97,14 @@
                     android:layout_height="wrap_content"/>
             </io.chaldeaprjkt.gamespace.widget.QuickStartAppView>
 
-            <include layout="@layout/tiles" />
+            <HorizontalScrollView
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="20dp"
+                android:scrollbars="none">
+                <include layout="@layout/tiles" />
+            </HorizontalScrollView>
 
             <include layout="@layout/memview" />
 
