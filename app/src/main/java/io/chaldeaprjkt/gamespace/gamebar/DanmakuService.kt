@@ -56,6 +56,7 @@ import io.chaldeaprjkt.gamespace.gamebar.DanmakuServiceListener
 interface DanmakuServiceInterface {
     val danmakuNotificationMode: Boolean
     fun showNotificationAsOverlay(danmakuText: String)
+    fun getApplabel(packageName: String): String
 }
 
 @ServiceScoped
@@ -170,6 +171,17 @@ class DanmakuService @Inject constructor(
         } else {
             notificationStack.add(notification)
         }
+    }
+    
+    override fun getApplabel(packageName: String): String {
+        return packageName.let {
+                try {
+                    val appInfo = context.packageManager.getApplicationInfo(it, 0)
+                    context.packageManager.getApplicationLabel(appInfo).toString()
+                } catch (e: Exception) {
+                    ""
+                }
+            }
     }
 
     override val danmakuNotificationMode: Boolean
