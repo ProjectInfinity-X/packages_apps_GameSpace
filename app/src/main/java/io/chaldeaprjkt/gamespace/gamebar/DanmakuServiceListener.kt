@@ -23,37 +23,57 @@ import android.app.Notification
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 
-import io.chaldeaprjkt.gamespace.data.AppSettings
-
 class DanmakuServiceListener : NotificationListenerService() {
 
-    private val postedNotifications = mutableMapOf<String, Long>()
+    private val postedNotifications = mutableSetOf<String>()
 
     var danmakuServiceInterface: DanmakuServiceInterface? = null
+
+    override fun onListenerConnected() {
+        super.onListenerConnected()
+        getActiveNotifications()?.forEach { sbn ->
+            if (sbn.isClearable && !sbn.isOngoing) {
+                val title = sbn.notification.extras.getCharSequence(Notification.EXTRA_TITLE)?.toString()
+                    ?: sbn.notification.extras.getCharSequence(Notification.EXTRA_TITLE_BIG)?.toString()
+                val text = sbn.notification.extras.getCharSequence(Notification.EXTRA_TEXT)?.toString()
+
+                val danmakuText = "[$title] $text".trim()
+                if (danmakuText.isNotBlank()) {
+                    postedNotifications.add(danmakuText)
+                }
+            }
+        }
+    }
 
     override fun onNotificationPosted(sbn: StatusBarNotification) {
         if (!(danmakuServiceInterface?.danmakuNotificationMode ?: false) || !sbn.isClearable || sbn.isOngoing) return
 
-        val extras = sbn.notification.extras
+        val title = sbn.notification.extras.getCharSequence(Notification.EXTRA_TITLE)?.toString()
+            ?: sbn.notification.extras.getCharSequence(Notification.EXTRA_TITLE_BIG)?.toString()
+        val text = sbn.notification.extras.getCharSequence(Notification.EXTRA_TEXT)?.toString()
 
-        val title = extras.getCharSequence(Notification.EXTRA_TITLE)?.toString()
-            ?: extras.getCharSequence(Notification.EXTRA_TITLE_BIG)?.toString()
-        val text = extras.getCharSequence(Notification.EXTRA_TEXT)?.toString()
+        val danmakuText = "[$title] $text".trim()
 
-        var danmakuText = ""
-        if (title?.isNotBlank() == true) danmakuText += "[$title] "
-        if (text?.isNotBlank() == true) danmakuText += text
-
-        val time = sbn.notification.`when`
-        if (danmakuText.isNotBlank() && !(postedNotifications[danmakuText] == time)) {
+        if (danmakuText.isNotBlank() && !postedNotifications.contains(danmakuText)) {
             danmakuServiceInterface?.showNotificationAsOverlay(danmakuText)
-            insertPostedNotification(danmakuText, time)
+            insertPostedNotification(danmakuText)
         }
     }
 
-    private fun insertPostedNotification(danmakuText: String, time: Long) {
-        if (postedNotifications.size >= NOTIFICATIONS_MAX_CACHED) postedNotifications.clear()
-        postedNotifications[danmakuText] = time
+    override fun onNotificationRemoved(sbn: StatusBarNotification) {
+        val title = sbn.notification.extras.getCharSequence(Notification.EXTRA_TITLE)?.toString()
+            ?: sbn.notification.extras.getCharSequence(Notification.EXTRA_TITLE_BIG)?.toString()
+        val text = sbn.notification.extras.getCharSequence(Notification.EXTRA_TEXT)?.toString()
+
+        val danmakuText = "[$title] $text".trim()
+
+        if (danmakuText.isNotBlank()) {
+            postedNotifications.remove(danmakuText)
+        }
+    }
+
+    private fun insertPostedNotification(danmakuText: String) {
+        postedNotifications.add(danmakuText)
     }
 
     companion object {
