@@ -16,12 +16,8 @@
  */
 package io.chaldeaprjkt.gamespace.gamebar
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
-import android.content.pm.ServiceInfo
 import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.graphics.Point
@@ -36,7 +32,6 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import androidx.core.app.NotificationCompat
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
@@ -179,35 +174,6 @@ class GameBarService : Hilt_GameBarService() {
         danmakuService.init()
     }
 
-    private fun startForegroundService() {
-        val channelId = "gamespace_service_channel"
-        val channelName = "Game Space Service"
-
-        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-        val channel = NotificationChannel(
-            channelId,
-            channelName,
-            NotificationManager.IMPORTANCE_HIGH
-        ).apply {
-            setSound(null, null)
-            enableVibration(false)
-            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-        }
-        manager.createNotificationChannel(channel)
-
-        val notification = NotificationCompat.Builder(this, channelId)
-            .setContentTitle(getString(R.string.gamespace_running))
-            .setSmallIcon(R.drawable.ic_gear)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_SERVICE)
-            .setOngoing(true)
-            .setSilent(true)
-            .build()
-
-        startForeground(1001, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
-    }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
             ACTION_STOP -> onGameLeave()
@@ -253,7 +219,6 @@ class GameBarService : Hilt_GameBarService() {
         rootBarView.alpha = 0f
         updateRootBarView()
         handler.postDelayed(firstPaint, 500)
-        startForegroundService()
     }
 
     fun onGameLeave() {
