@@ -131,7 +131,6 @@ class GameBarService : Hilt_GameBarService() {
                 if (!::rootPanelView.isInitialized) {
                     setupPanelView()
                 }
-                updatePanelTranslation()
                 if (!rootPanelView.isAttachedToWindow) {
                     wm.addView(rootPanelView, panelLayoutParam)
                     rootPanelView.alpha = 0f
@@ -392,14 +391,6 @@ class GameBarService : Hilt_GameBarService() {
         } else {
             rootPanelView.gravity = Gravity.END
             rootPanelView.setPaddingRelative(16, 16, barWidth, 16)
-        }
-    }
-    
-    fun updatePanelTranslation() {
-        panelView.post {
-            val layoutParams = panelView.layoutParams as ViewGroup.MarginLayoutParams
-            layoutParams.topMargin = appSettings.y
-            panelView.layoutParams = layoutParams
         }
     }
 
