@@ -134,12 +134,32 @@ class GameBarService : Hilt_GameBarService() {
                 updatePanelTranslation()
                 if (!rootPanelView.isAttachedToWindow) {
                     wm.addView(rootPanelView, panelLayoutParam)
+                    rootPanelView.alpha = 0f
+                    rootPanelView.visibility = View.VISIBLE
+                    rootPanelView.animate()
+                        .alpha(1f)
+                        .setDuration(300)
+                        .start()
                 } else {
                     wm.updateViewLayout(rootPanelView, panelLayoutParam)
                 }
-            } else if (!value) {
-                if (::rootPanelView.isInitialized && rootPanelView.isAttachedToWindow)
-                    wm.removeView(rootPanelView)
+            } else {
+                if (::rootPanelView.isInitialized && rootPanelView.isAttachedToWindow) {
+                    rootPanelView.animate()
+                        .alpha(0f)
+                        .setDuration(300)
+                        .withEndAction {
+                            rootPanelView.visibility = View.INVISIBLE
+                            handler.postDelayed({
+                                runCatching {
+                                    if (rootPanelView.isAttachedToWindow) {
+                                        wm.removeView(rootPanelView)
+                                    }
+                                }.onFailure { it.printStackTrace() }
+                            }, 50)
+                        }
+                        .start()
+                }
             }
         }
 
@@ -355,11 +375,16 @@ class GameBarService : Hilt_GameBarService() {
     private fun setupPanelView() {
         rootPanelView = LayoutInflater.from(this)
             .inflate(R.layout.window_panel, FrameLayout(this), false) as LinearLayout
+        rootPanelView.alpha = 0f
+        rootPanelView.visibility = View.INVISIBLE
+
         panelView = rootPanelView.findViewById(R.id.panel_view)!!
         panelView.alpha = appSettings.menuOpacity / 100f
+
         rootPanelView.setOnClickListener {
             showPanel = false
         }
+
         val barWidth = barView.width + barView.marginStart
         if (barLayoutParam.x < 0) {
             rootPanelView.gravity = Gravity.START
