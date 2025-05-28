@@ -2,6 +2,7 @@ package io.chaldeaprjkt.gamespace.widget
 
 import android.app.ActivityTaskManager
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.WindowManager
@@ -25,6 +26,9 @@ class MenuSwitcher @JvmOverloads constructor(
 
     init {
         LayoutInflater.from(context).inflate(R.layout.bar_menu_switcher, this, true)
+        content?.apply {
+            setTextColor(Color.WHITE)
+        }
     }
 
     private val appSettings by lazy { context.entryPointOf<ServiceViewEntryPoint>().appSettings() }
@@ -70,7 +74,10 @@ class MenuSwitcher @JvmOverloads constructor(
     private fun onFrameUpdated(newValue: Float) = scope.launch {
         DecimalFormat("#").apply {
             roundingMode = RoundingMode.HALF_EVEN
-            content?.text = this.format(newValue)
+            content?.apply {
+                text = format(newValue)
+                setTextColor(Color.WHITE)
+            }
         }
     }
 
@@ -86,7 +93,10 @@ class MenuSwitcher @JvmOverloads constructor(
 
     private fun setMenuIcon(icon: Int?) {
         when (icon) {
-            R.drawable.ic_close, R.drawable.ic_drag -> layoutParams.width = 36.dp
+            R.drawable.ic_close, R.drawable.ic_drag -> {
+                layoutParams.width = 36.dp
+                content?.setTextColor(Color.WHITE)
+            }
             else -> layoutParams.width = LayoutParams.WRAP_CONTENT
         }
         val ic = icon?.takeIf { !showFps }?.let { resources.getDrawable(it, context.theme) }
