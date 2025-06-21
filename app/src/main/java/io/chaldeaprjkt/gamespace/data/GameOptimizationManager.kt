@@ -26,7 +26,7 @@ class GameOptimizationManager @Inject constructor(
     private val activityManager: ActivityManager = context.getSystemService(ActivityManager::class.java)!!
 
     var isLaunchBoostEnabled: Boolean
-        get() = prefs.getBoolean(KEY_LAUNCH_BOOST, true)
+        get() = prefs.getBoolean(KEY_LAUNCH_BOOST, false)
         set(value) = prefs.edit().putBoolean(KEY_LAUNCH_BOOST, value).apply()
 
     var isMemoryManagementEnabled: Boolean
@@ -38,7 +38,7 @@ class GameOptimizationManager @Inject constructor(
         set(value) = prefs.edit().putString(KEY_LOAD_PRIORITY, value).apply()
 
     var isCacheManagementEnabled: Boolean
-        get() = prefs.getBoolean(KEY_CACHE_MANAGEMENT, true)
+        get() = prefs.getBoolean(KEY_CACHE_MANAGEMENT, false)
         set(value) = prefs.edit().putBoolean(KEY_CACHE_MANAGEMENT, value).apply()
 
     fun optimizeGameLaunch(packageName: String) {

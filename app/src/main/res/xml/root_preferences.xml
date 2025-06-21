@@ -32,7 +32,7 @@
             android:key="game_launch_boost"
             android:title="@string/game_launch_boost_title"
             android:summary="@string/game_launch_boost_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <SwitchPreferenceCompat
             android:key="game_memory_management"
@@ -52,7 +52,7 @@
             android:key="game_cache_management"
             android:title="@string/game_cache_management_title"
             android:summary="@string/game_cache_management_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
     </PreferenceCategory>
 
