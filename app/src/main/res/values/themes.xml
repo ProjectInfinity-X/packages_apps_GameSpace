@@ -16,9 +16,9 @@
 
 <resources>
 
-    <style name="GameSpaceTheme" parent="Theme.SubSettingsBase" />
+    <style name="GameSpaceTheme" parent="Theme.SubSettingsBase.Expressive" />
 
-    <style name="GameSpaceTheme.GameBar" parent="Theme.SubSettingsBase">
+    <style name="GameSpaceTheme.GameBar" parent="Theme.SubSettingsBase.Expressive">
         <item name="android:buttonStyle">@style/GameSpaceTheme.FlatButton</item>
         <item name="android:imageButtonStyle">@style/GameSpaceTheme.FlatButton</item>
     </style>
