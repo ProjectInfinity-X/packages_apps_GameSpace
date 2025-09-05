@@ -18,9 +18,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Preference
+    <com.android.settingslib.widget.LayoutPreference
         android:key="headers"
-        android:persistent="false" />
+        android:layout="@layout/per_app_header"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false" />
 
     <ListPreference
         android:defaultValue="1"
