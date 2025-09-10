@@ -44,6 +44,9 @@ import android.widget.LinearLayout;
 import android.window.SplashScreen;
 
 import androidx.annotation.Nullable;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -119,6 +122,15 @@ public class QuickStartAppView extends LinearLayout {
         mLayoutManage.setOrientation(RecyclerView.HORIZONTAL);//设置滚动方向，横向滚动
         recyclerView.setLayoutManager(mLayoutManage);
         recyclerView.setAdapter(new MyRecyclerViewAdapter(recyclerView, Arrays.asList(packages)));
+
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setClipToPadding(false);
+        ViewCompat.setOnApplyWindowInsetsListener(recyclerView, (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(),
+                    Math.max(v.getPaddingBottom(), bars.bottom));
+            return insets;
+        });
     }
 
     private void setupAppIcon(ImageView imageView, @Nullable String packageName) {

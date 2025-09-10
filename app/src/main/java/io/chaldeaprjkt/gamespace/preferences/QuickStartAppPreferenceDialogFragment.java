@@ -15,12 +15,22 @@
  */
 package io.chaldeaprjkt.gamespace.preferences;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
+import android.view.Window;
+import android.view.ViewGroup;
+import android.widget.ListView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
 import java.util.ArrayList;
@@ -84,6 +94,50 @@ public class QuickStartAppPreferenceDialogFragment extends PreferenceDialogFragm
 
     @Override
     public void onDialogClosed(boolean positiveResult) {}
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        final Dialog dialog = getDialog();
+        if (dialog == null) return;
+
+        final Window window = dialog.getWindow();
+        if (window != null) {
+            WindowCompat.setDecorFitsSystemWindows(window, false);
+            final View decor = window.getDecorView();
+            ViewCompat.setOnApplyWindowInsetsListener(decor, (v, insets) -> {
+                Insets bars = insets.getInsets(
+                        WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
+                v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+                return insets;
+            });
+        }
+
+        final ListView list = dialog.findViewById(android.R.id.list);
+        if (list != null) {
+            list.setClipToPadding(false);
+            list.setPadding(
+                    list.getPaddingLeft(),
+                    list.getPaddingTop(),
+                    list.getPaddingRight(),
+                    list.getPaddingBottom() + dp(16) // keeps last row from staying behind buttons
+            );
+
+            list.post(() -> {
+                int screenH = list.getResources().getDisplayMetrics().heightPixels;
+                int max = (int) (screenH * 0.6f); // cap to ~60% of screen
+                if (list.getHeight() > max) {
+                    ViewGroup.LayoutParams lp = list.getLayoutParams();
+                    lp.height = max;
+                    list.setLayoutParams(lp);
+                }
+            });
+        }
+    }
+
+    private int dp(int v) {
+        return Math.round(v * getResources().getDisplayMetrics().density);
+    }
 
     private void saveSelectedApps(Context context) {
         String[] selectedArray = selectedPackages.toArray(new String[0]);
