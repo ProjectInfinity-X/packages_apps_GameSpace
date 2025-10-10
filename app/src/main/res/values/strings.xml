@@ -26,6 +26,7 @@
     <string name="app_selector_label">Pick your game</string>
     <string name="auto_brightness_disabled_title">Disable auto-brightness</string>
     <string name="auto_brightness_disabled_summary">Keep brightness settled while in-game</string>
+    <string name="heads_up_disabled_title">Disable heads-up</string>
     <string name="heads_up_disabled_summary">Disable Notification heads-up while in-game</string>
     <string name="in_game_preferences_title">In-game options</string>
     <string name="game_list_title">Library</string>
@@ -47,6 +48,7 @@
     </string-array>
     <string name="fps_Info_title">FPS Info</string>
     <string name="stay_awake_title">Stay Awake</string>
+    <string name="heads_up_title">Heads-up</string>
     <string name="stay_awake_summary">Keep screen awake while in the game</string>
     <string name="lock_gesture_title">Lock gesture</string>
 
