@@ -68,12 +68,12 @@ class SystemSettings @Inject constructor(
     var statusbarBrightness
         get() =
             Settings.System.getIntForUser(
-                resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0,
+                resolver, "status_bar_brightness_control", 0,
                 UserHandle.USER_CURRENT
             ) == 1
         set(value) {
             Settings.System.putIntForUser(
-                resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
+                resolver, "status_bar_brightness_control",
                 if (value) 1 else 0, UserHandle.USER_CURRENT
             )
         }
@@ -104,12 +104,12 @@ class SystemSettings @Inject constructor(
 
     var threeScreenshot
         get() = LineageSettings.System.getIntForUser(
-            resolver, LineageSettings.System.KEY_THREE_FINGERS_SWIPE_ACTION, 0,
+            resolver, "key_three_fingers_swipe_action", 0,
             UserHandle.USER_CURRENT
         )
         set(value) {
             LineageSettings.System.putIntForUser(
-                resolver, LineageSettings.System.KEY_THREE_FINGERS_SWIPE_ACTION,
+                resolver, "key_three_fingers_swipe_action",
                 value, UserHandle.USER_CURRENT
             )
         }
@@ -150,12 +150,12 @@ class SystemSettings @Inject constructor(
     var pulseBassHaptics
         get() =
             Settings.Secure.getIntForUser(
-                resolver, Settings.Secure.PULSE_BASS_HAPTICS, 0,
+                resolver, "pulse_bass_haptics", 0,
                 UserHandle.USER_CURRENT
             )
         set(value) {
             Settings.Secure.putIntForUser(
-                resolver, Settings.Secure.PULSE_BASS_HAPTICS,
+                resolver, "pulse_bass_haptics",
                 value, UserHandle.USER_CURRENT
             )
         }
